@@ -1,0 +1,73 @@
+/* RANDOM CARD */
+
+.characterRandom {
+    box-shadow: 5px 5px 20px rgb(0 0 0 / 25%);
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    align-items: center;
+}
+
+.characterRandom svg {
+    margin: 0 auto;
+}
+
+.characterRandom__card,
+.characterRandom__static {
+    padding: 40px 35px;
+}
+
+.characterRandom__card {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+}
+
+.characterRandom__img img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.notImage img {
+    object-fit: contain;
+}
+
+.characterRandom__name {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 29px;
+}
+
+.characterRandom__description {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 10px 0;
+}
+
+.characterRandom__static {
+    background-color: var(--bgcolor);
+    color: #fff;
+    position: relative;
+}
+
+.characterRandom__title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    letter-spacing: -0.045em;
+}
+
+.characterRandom__title p:nth-child(2) {
+    margin-top: 22px;
+}
+
+.characterRandom__decor {
+    position: absolute;
+    bottom: 10px;
+    right: -35px;
+}
+
+.characterRandom__static .button {
+    margin-top: 20px;
+}

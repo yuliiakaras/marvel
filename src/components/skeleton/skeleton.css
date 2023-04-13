@@ -1,0 +1,47 @@
+
+.skeleton {
+    margin-top: 20px;
+}
+
+.sceleton__header {
+    display: grid;
+    grid-template-columns: 35px auto;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.sceleton__icon {
+    background-color: #C4C4C4;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+
+.sceleton__title {
+    background-color: #C4C4C4;
+    height: 15px;
+    width: 100%;
+}
+
+.skeleton__block {
+    background-color: #C4C4C4;
+    margin-top: 15px;
+    height: 35px;
+    width: 100%;
+}
+
+.pulse {
+    animation: pulse 1.5s ease-in-out .5s infinite
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1
+    }
+    50% {
+        opacity: .4
+    }
+    100% {
+        opacity: 1
+    }
+}

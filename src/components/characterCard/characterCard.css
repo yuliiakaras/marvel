@@ -1,0 +1,35 @@
+
+.character__card {
+    /* box-shadow: 5px 5px 20px rgb(0 0 0 / 25%); */
+    width: 200px;
+        height: 318px;
+        background-color: var(--bgcolor);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, .25);
+        padding: 15px;
+        cursor: pointer;
+        transition: 0.3s transform;
+}
+
+.active {
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.75);
+    transition: 0.3s transform, 0.3s -webkit-transform;
+}
+
+.character__card img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    transform: translate(-15px, -15px);
+}
+
+.notImage img {
+    object-fit: fill;
+}
+
+.craracter__name {
+    color: #fff;
+    font-size: 22px;
+    line-height: 24px;
+    text-transform: uppercase;
+    font-weight: bold;
+}

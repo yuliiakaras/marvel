@@ -1,0 +1,32 @@
+
+.app__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 52px 0;
+    font-size: 28px;
+}
+
+.app__header a {
+    font-weight: bold;
+    color: #000;
+}
+
+.app__title a span {
+    color: var(--primary);
+}
+
+.app__menu {
+    width: 215px;
+}
+
+.app__menu a:hover {
+    color: var(--primary);
+}
+
+.app__menu ul {
+    display: flex;
+    font-size: 24px;
+    padding: 10px;
+    justify-content: space-between;
+}

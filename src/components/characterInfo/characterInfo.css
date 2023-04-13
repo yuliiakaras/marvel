@@ -1,0 +1,67 @@
+.character__info {
+    margin-left: 30px;
+    box-shadow: 5px 5px 20px rgb(0 0 0 / 25%);
+    padding: 25px;
+    position: relative;
+    z-index: 5;
+    background-color: #fff;
+}
+
+.character__basics {
+    display: grid;
+    grid-template-columns: 150px auto;
+    column-gap: 25px;
+}
+
+.character__img img {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+}
+
+.notImage img {
+    object-fit: fill;
+}
+
+.character__name {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 28px;
+}
+
+.character__basics .character__btns {
+    margin-top: 35px;
+}
+
+.character__basics .button:nth-child(2) {
+    margin-top: 10px;
+}
+
+.character__descr {
+    font-size: 14px;
+    margin-top: 15px;
+    line-height: 18px;
+}
+
+.character__comics {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 24px;
+    margin-top: 10px;
+}
+
+.character__comics-item {
+    padding: 5px;
+    font-size: 16px;
+    line-height: 25px;
+    box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    margin-top: 10px;
+}
+
+.character__select {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+}
