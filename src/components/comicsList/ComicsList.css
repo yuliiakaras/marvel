@@ -1,0 +1,54 @@
+/* .character {
+    display: flex;
+    margin-top: 40px;
+    align-items: start;
+} */
+
+.comics {
+    padding-bottom: 50px;
+}
+
+.comics__cards ul {
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
+    column-gap: 40px;
+    row-gap: 50px;
+}
+
+
+/* CARD */
+
+
+.comics__card img {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .25);
+    width: 230px;
+    height: 330px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.comics__card {
+    transition: transform 0.5s ease;
+}
+
+.comics__card:hover {
+    transform: translateY(-8px);
+}
+
+.notImage img {
+    object-fit: fill;
+}
+
+.comics__name {
+    margin: 15px 0 10px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #000;
+}
+
+.comics__price {
+    opacity: 0.7;
+    color: #000;
+}
+

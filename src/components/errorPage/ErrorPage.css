@@ -1,0 +1,22 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5;
+}
+
+.content__image img{
+    height: 400px;
+}
+
+.content__info {
+    margin: 0 0 20px 20px;
+}
+
+.content__info p{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 37px;
+    margin-bottom: 30px;
+}
+

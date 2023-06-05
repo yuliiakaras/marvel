@@ -1,45 +1,29 @@
-import {Component} from 'react';
-
 import './App.css';
+
 import Header from "./components/header/Header.js";
-import CharacterRandom from "./components/characterRandom/CharacterRandom";
-import CharacterCards from "./components/characterCards/CharacterCards";
-import CharacterInfo from './components/characterInfo/CharacterInfo';
-import ErrorBoundary from './components/errorBoundary/ErrorBoundary';
-import vision from "../src/resources/img/vision.png";
-class App extends Component {
+import MainPage from './components/pages/MainPage';
+import ComicsPage from './components/pages/ComicsPage';
+import ErrorPage from './components/errorPage/ErrorPage';
+import SingleComicPage from './components/pages/SingleComicPage';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+const App = () => {
 
-    state = {
-        selectedChar: null
-    }
-
-    onCharSelected = (id) => {
-        this.setState({selectedChar: id})
-    }
-
-    render() {
-        return (
+    return (
+        <Router>
             <div className="app">
-                <Header/> {
-                    <main>
-                            <ErrorBoundary>
-                              <CharacterRandom/>
-                            </ErrorBoundary>
-                            <div className="character">
-                                <ErrorBoundary>
-                                  <CharacterCards onCharSelected={this.onCharSelected}/>
-                                </ErrorBoundary>
-                                <ErrorBoundary>
-                                    <CharacterInfo charId={this.state.selectedChar}/>
-                                </ErrorBoundary>
-                            </div>
-                            <div className="decor">
-                                <img src={vision} alt="background img"/></div>
-                   </main>
-                }
+                <Header/>
+                <main>
+                    <Routes>
+                        < Route path='/' element={<MainPage/>} />
+                        < Route path='/comics' element={<ComicsPage/>} />
+                        < Route path='/comics/:comicId' element={<SingleComicPage/>} />
+                        < Route path='*' element={<ErrorPage/>} />
+                    </Routes>
+                    
+                </main>
             </div>
-        );
-    }
+        </Router>
+    );
 }
 
 export default App;

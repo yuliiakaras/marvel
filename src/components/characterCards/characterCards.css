@@ -11,9 +11,7 @@
     row-gap: 30px;
 }
 
-
 /* CARD */
-
 
 .character__card {
     /* box-shadow: 5px 5px 20px rgb(0 0 0 / 25%); */
@@ -26,7 +24,7 @@
         transition: 0.3s transform;
 }
 
-.active {
+.active-card {
     box-shadow: 0 5px 20px var(--primary);
     transform: translateY(-8px);
 }
