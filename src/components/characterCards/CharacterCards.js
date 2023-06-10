@@ -87,6 +87,7 @@ const CharacterCards = (props) => {
     const spinner = loading && !newItemsLoading
         ? <Spinner/>
         : null;
+
     return (
         <div className="character__cards">
             <ul>
