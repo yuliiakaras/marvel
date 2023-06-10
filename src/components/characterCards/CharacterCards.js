@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
+
 import PropTypes from 'prop-types';
 
 import './characterCards.css';
@@ -14,39 +16,49 @@ const CharacterCards = (props) => {
     const [newItemsLoading, setNewItemsLoading] = useState(false);
     const [offset, setOffset] = useState(210);
     const [charEnded, setCharEnded] = useState(false);
+    const [showItems, setShowItems] = useState(false);
 
     const {loading, error, getAllCharacters} = useMarvelService();
 
     useEffect(() => {
         onRequest(offset, true);
-    },[]);
+    }, []);
 
     const onRequest = (offset, initial) => {
-        initial ? setNewItemsLoading(false) : setNewItemsLoading(true);
-        getAllCharacters(offset)
-            .then(onCharListLoaded)
-    }   
+        initial
+            ? setNewItemsLoading(false)
+            : setNewItemsLoading(true);
+        getAllCharacters(offset).then(onCharListLoaded)
+    }
 
     const onCharListLoaded = (newCharacters) => {
         let ended = false;
-        if(newCharacters.length < 9) {
+        if (newCharacters.length < 9) {
             ended = true;
         }
-        setCharacters(characters => [...characters, ...newCharacters]);
+        setCharacters(characters => [
+            ...characters,
+            ...newCharacters
+        ]);
         setNewItemsLoading(false);
         setOffset(offset => offset + 9);
         setCharEnded(ended);
+        setShowItems(true);
     }
 
     const itemRefs = [];
 
     const focusOnItem = (i) => {
-        if(itemRefs && Array.isArray(itemRefs)) {
+        if (itemRefs && Array.isArray(itemRefs)) {
             itemRefs.forEach(item => {
-                item.classList.remove('active-card');
+                item
+                    .classList
+                    .remove('active-card');
             })
-            itemRefs[i].classList.add('active-card');
-            itemRefs[i].focus(); 
+            itemRefs[i]
+                .classList
+                .add('active-card');
+            itemRefs[i].focus();
         }
     }
 
@@ -54,30 +66,40 @@ const CharacterCards = (props) => {
         const items = arr.map((item, i) => {
             let path = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg";
             return (
-                <li
-                    key={item.id}
-                    ref={el => itemRefs[i] = el}
-                    onClick={() => {
-                        props.onCharSelected(item.id);
-                        focusOnItem(i);
-                    }}
-                    onKeyDown={e => {
-                        if(e.key === ' ' || e.key === "Enter") {
-                            props.onCharSelected(item.id);
-                            focusOnItem(i); 
-                        }
-                    }}
-                    className={item.thumbnail === path
-                        ? "character__card notImage"
-                        : "character__card"}>
-                    <img src={item.thumbnail} alt="card img"></img>
-                    <div className="craracter__name">{item.name}</div>
-                </li>
+                <div className="character__cards">
+                    <CSSTransition in={showItems} key={item.id} classNames="fade" timeout={500}>
+                        <li
+                            key={item.id}
+                            ref={el => itemRefs[i] = el}
+                            onClick={() => {
+                                props.onCharSelected(item.id);
+                                focusOnItem(i);
+                            }}
+                            onKeyDown={e => {
+                                if (e.key === ' ' || e.key === "Enter") {
+                                    props.onCharSelected(item.id);
+                                    focusOnItem(i);
+                                }
+                            }}
+                            className={item.thumbnail === path
+                                ? "character__card notImage"
+                                : "character__card"}>
+                            <img src={item.thumbnail} alt="card img"></img>
+                            <div className="craracter__name">{item.name}</div>
+                        </li>
+                    </CSSTransition>
+                </div>
+
             )
         })
-    return items;
-}
-    
+        return (
+            <ul className="character__cards">
+                <TransitionGroup className="grid-container">
+                    {items}
+                </TransitionGroup>
+            </ul>
+        )
+    }
 
     const items = res(characters);
 
@@ -89,17 +111,23 @@ const CharacterCards = (props) => {
         : null;
 
     return (
-        <div className="character__cards">
-            <ul>
-                {errorMessage}
-                {spinner}
-                {items}
-            </ul>
-            <button 
+        <div>
+            {/* <ul> */}
+            {errorMessage}
+            {spinner}
+            {items}
+            {/* </ul> */}
+            <button
                 className="button button__main large"
                 disabled={newItemsLoading}
-                style={{'display': charEnded ? 'none' : 'block'}}
-                onClick={() => {onRequest(offset)}}>
+                style={{
+                    'display' : charEnded
+                        ? 'none'
+                        : 'block'
+                }}
+                onClick={() => {
+                    onRequest(offset)
+                }}>
                 load more
             </button>
         </div>

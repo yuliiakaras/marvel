@@ -4,8 +4,6 @@ const useMarvelService = () => {
 
     const _apiBase = 'https://gateway.marvel.com:443/v1/public/';
     const _apiKey = `apikey=${process.env.REACT_APP_PUBLIC_API_KEY}`;
-    
-    console.log(process.env.REACT_APP_PUBLIC_API_KEY);
 
     const _baseOffset = 210;
     const _offset = 0;

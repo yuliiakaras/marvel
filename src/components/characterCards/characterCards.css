@@ -9,19 +9,26 @@
     grid-template-columns: repeat(3, 200px);
     column-gap: 25px;
     row-gap: 30px;
-}
-
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 25px;
+    row-gap: 30px;
+  }
+  
 /* CARD */
 
 .character__card {
     /* box-shadow: 5px 5px 20px rgb(0 0 0 / 25%); */
     width: 200px;
-        height: 318px;
-        background-color: var(--bgcolor);
-        box-shadow: 5px 5px 10px rgba(0, 0, 0, .25);
-        padding: 15px;
-        cursor: pointer;
-        transition: 0.3s transform;
+    height: 318px;
+    background-color: var(--bgcolor);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .25);
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.3s transform;
 }
 
 .active-card {
@@ -47,3 +54,25 @@
     text-transform: uppercase;
     font-weight: bold;
 }
+
+/* Animation */
+
+.fade-enter {
+    opacity: 0;
+  }
+  
+  .fade-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+  
+  .fade-exit {
+    opacity: 1;
+  }
+  
+  .fade-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+  }
+  
+  
