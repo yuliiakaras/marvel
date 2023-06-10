@@ -3,7 +3,6 @@ import { useHttp } from "../hooks/http.hook";
 const useMarvelService = () => { 
 
     const _apiBase = 'https://gateway.marvel.com:443/v1/public/';
-    // const _apiKey = 'apikey=b481cc3f7e4b607f867263f7502d4a6e';
     const _apiKey = `apikey=${process.env.REACT_APP_PUBLIC_API_KEY}`;
     
     console.log(process.env.REACT_APP_PUBLIC_API_KEY);
