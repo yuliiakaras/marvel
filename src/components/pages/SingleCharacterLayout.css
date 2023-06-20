@@ -1,4 +1,4 @@
-.comic {
+.singleCharacter {
     margin-top: 50px;
     display: grid;
     grid-template-columns: 293px 550px auto;
@@ -6,33 +6,32 @@
     align-items: start;
 }
 
-.comic__img {
+.singleCharacter__img {
     width: 293px;
-    height: 450px;
 }
-.comic__name {
+.singleCharacter__name {
     font-weight: bold;
     font-size: 22px;
     line-height: 29px;
 }
-.comic__descr {
+.singleCharacter__descr {
     font-size: 18px;
     line-height: 24px;
     margin-top: 25px;
 }
-.comic__price {
+.singleCharacter__price {
     font-weight: bold;
     font-size: 24px;
     line-height: 32px;
     color: var(--primary);
     margin-top: 25px;
 }
-.comic__goBack {
+.singleCharacter__goBack {
     justify-self: end;
     font-weight: bold;
     font-size: 18px;
     line-height: 24px;
 }
-.comic__goBack:hover {
+.singleCharacter__goBack:hover {
     color: var(--primary);
 }

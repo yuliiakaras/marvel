@@ -47,7 +47,6 @@ const CharacterInfo = (props) => {
 
 const View = ({char}) => {
     const {name, description, thumbnail, homepage, wiki, comics} = char;
-    // const {id} = comic;
     let path = "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg";
     return (
         <>
@@ -81,7 +80,6 @@ const View = ({char}) => {
                             
                             return (
                                 <li key={i} className="character__comics-item">
-                                    {/* <a href={`${item.resourceURI} + 'apikey=b481cc3f7e4b607f867263f7502d4a6e'`}>{item.name}</a> */}
                                     <Link to={`/comics/${item.resourceURI.match(/\d+$/)[0]}`}>{item.name}</Link>
                                     {item.name}
                                 </li>

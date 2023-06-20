@@ -8,7 +8,9 @@ import Header from "./components/header/Header.js";
 const MainPage = lazy(() => import('./components/pages/MainPage'));
 const ComicsPage = lazy (() => import( './components/pages/ComicsPage'));
 const ErrorPage = lazy (() => import('./components/errorPage/ErrorPage'));
-const SingleComicPage = lazy (() => import('./components/pages/SingleComicPage'));
+const SinglePage = lazy (() => import('./components/pages/SinglePage'));
+const SingleComicLayout = lazy (() => import('./components/pages/SingleComicLayout'));
+const SingleCharacterLayout = lazy (() => import('./components/pages/SingleCharacterLayout'));
 
 const App = () => {
 
@@ -21,7 +23,8 @@ const App = () => {
                         <Routes>
                             < Route path='/' element={<MainPage/>}/>
                             < Route path='/comics' element={<ComicsPage/>}/>
-                            < Route path='/comics/:comicId' element={<SingleComicPage/>}/>
+                            < Route path='/comics/:id' element={<SinglePage Component={ SingleComicLayout } type='comic' />}/>
+                            < Route path='/characters/:id' element={<SinglePage Component={ SingleCharacterLayout } type='character' />}/>
                             < Route path='*' element={<ErrorPage/>}/>
                         </Routes>
                     </Suspense>

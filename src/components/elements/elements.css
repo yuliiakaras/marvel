@@ -7,6 +7,7 @@
     margin-right: 25px;
     transition: transform .3s ease-out;
     text-transform: uppercase;
+    height: 37px;
 }
 
 .button a {

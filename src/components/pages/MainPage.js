@@ -3,6 +3,7 @@ import {useState} from 'react';
 import CharacterRandom from "../characterRandom/CharacterRandom";
 import CharacterCards from "../characterCards/CharacterCards";
 import CharacterInfo from '../characterInfo/CharacterInfo';
+import CharacterForm from '../characterForm/CharacterForm';
 import ErrorBoundary from '../errorBoundary/ErrorBoundary';
 
 import vision from '../../resources/img/vision.png'
@@ -19,16 +20,23 @@ const MainPage = () => {
                 <CharacterRandom/>
             </ErrorBoundary>
             <div className="character">
-                <ErrorBoundary>
-                    <CharacterCards onCharSelected={onCharSelected}/>
-                </ErrorBoundary>
-                <ErrorBoundary>
-                    <CharacterInfo charId={selectedChar}/>
-                </ErrorBoundary>
+                <div className="col1">
+                    <ErrorBoundary>
+                        <CharacterCards onCharSelected={onCharSelected}/>
+                    </ErrorBoundary>
+                </div>
+                <div className="col2">
+                    <ErrorBoundary>
+                        <CharacterInfo charId={selectedChar}/>
+                    </ErrorBoundary>
+                    <ErrorBoundary>
+                        <CharacterForm />
+                    </ErrorBoundary>
+                </div>
             </div>
             <div className="decor">
-                        <img src={vision} alt="background img"/>
-                    </div>
+                <img src={vision} alt="background img"/>
+            </div>
         </>
     )
 }

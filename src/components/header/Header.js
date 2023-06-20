@@ -14,7 +14,7 @@ const Header = () => {
             <nav className="app__menu">
                 <ul>
                     <li>
-                        <NavLink end style={({isActive}) => ({color: isActive ? 'var(--primary)' : 'inherit'})} to="/">Characters</NavLink>
+                        <NavLink style={({isActive}) => ({color: isActive ? 'var(--primary)' : 'inherit'})} to="/">Characters</NavLink>
 
                     </li>
                     /
