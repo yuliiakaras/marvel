@@ -9,8 +9,8 @@ const MainPage = lazy(() => import('./components/pages/MainPage'));
 const ComicsPage = lazy (() => import( './components/pages/ComicsPage'));
 const ErrorPage = lazy (() => import('./components/errorPage/ErrorPage'));
 const SinglePage = lazy (() => import('./components/pages/SinglePage'));
-const SingleComicLayout = lazy (() => import('./components/pages/SingleComicLayout'));
-const SingleCharacterLayout = lazy (() => import('./components/pages/SingleCharacterLayout'));
+const SingleComicLayout = lazy (() => import('./components/singleComicLayout/SingleComicLayout'));
+const SingleCharacterLayout = lazy (() => import('./components/singleCharacterLayout/SingleCharacterLayout'));
 
 const App = () => {
 
