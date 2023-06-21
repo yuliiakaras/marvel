@@ -5,15 +5,14 @@ import '../elements/elements.css';
 
 import useMarvelService from '../../services/MarvelService';
 import AppBanner from '../appBanner/AppBanner';
-import ErrorMassage from '../errorMessage/ErrorMessage';
-import Spinner from '../spinner/Spinner';
+import setContent from '../../utils/setContent';
 
 const SinglePage = ({Component, type}) => {
 
     const {id} = useParams();
     const [data, setData] = useState(null);
 
-    const {loading, error, clearError, getComic, getCharacter} = useMarvelService();
+    const {clearError, getComic, getCharacter, currentProcess, setCurrentProcess} = useMarvelService();
 
     useEffect(() => {
         updateData();
@@ -25,11 +24,13 @@ const SinglePage = ({Component, type}) => {
         switch (type) {
             case 'comic':
                 getComic(id)
-                    .then(onDataLoaded);
+                    .then(onDataLoaded)
+                    .then(() => setCurrentProcess('confirmed'));
                 break;
             case 'character':
                 getCharacter(id)
-                    .then(onDataLoaded);
+                    .then(onDataLoaded)
+                    .then(() => setCurrentProcess('confirmed'))
                 break;
         }
     }
@@ -38,16 +39,10 @@ const SinglePage = ({Component, type}) => {
         setData(data);
     }
 
-    const spinner = loading ? <Spinner /> : null;
-    const errorMessage = error ? <ErrorMassage /> : null;
-    const content = !(loading || error || !data ) ? <Component data={data}/> : null;
-
     return (
         <>
         <AppBanner />
-        {errorMessage}
-        {spinner}
-        {content}
+        {setContent(currentProcess, Component, data)}
         </>
     )
 }

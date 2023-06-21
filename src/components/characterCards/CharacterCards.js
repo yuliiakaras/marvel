@@ -10,6 +10,22 @@ import useMarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
+const setContent = (process, Component, newItemsLoading) => {
+        
+    switch (process) {
+        case 'waiting':
+            return <Spinner />;
+        case 'loading':
+            return newItemsLoading ? <Component /> : <Spinner />;
+        case 'confirmed':
+            return <Component />;
+        case 'error':
+            return <ErrorMessage />;
+        default:
+            throw new Error('Unexpected process state');
+    }
+}
+
 const CharacterCards = (props) => {
 
     const [characters, setCharacters] = useState([]);
@@ -18,7 +34,7 @@ const CharacterCards = (props) => {
     const [charEnded, setCharEnded] = useState(false);
     const [showItems, setShowItems] = useState(false);
 
-    const {loading, error, getAllCharacters} = useMarvelService();
+    const {getAllCharacters, currentProcess, setCurrentProcess} = useMarvelService();
 
     useEffect(() => {
         onRequest(offset, true);
@@ -28,7 +44,9 @@ const CharacterCards = (props) => {
         initial
             ? setNewItemsLoading(false)
             : setNewItemsLoading(true);
-        getAllCharacters(offset).then(onCharListLoaded)
+                getAllCharacters(offset)
+                .then(onCharListLoaded)
+                .then(() => setCurrentProcess('confirmed'))
     }
 
     const onCharListLoaded = (newCharacters) => {
@@ -101,22 +119,9 @@ const CharacterCards = (props) => {
         )
     }
 
-    const items = res(characters);
-
-    const errorMessage = error
-        ? <ErrorMessage/>
-        : null;
-    const spinner = loading && !newItemsLoading
-        ? <Spinner/>
-        : null;
-
     return (
         <div>
-            {/* <ul> */}
-            {errorMessage}
-            {spinner}
-            {items}
-            {/* </ul> */}
+            {setContent(currentProcess, () => res(characters), newItemsLoading)}
             <button
                 className="button button__main large"
                 disabled={newItemsLoading}

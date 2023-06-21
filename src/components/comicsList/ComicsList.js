@@ -8,6 +8,22 @@ import useMarvelService from '../../services/MarvelService';
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
 
+const setContent = (process, Component, newItemsLoading) => {
+        
+    switch (process) {
+        case 'waiting':
+            return <Spinner />;
+        case 'loading':
+            return newItemsLoading ? <Component /> : <Spinner />;
+        case 'confirmed':
+            return <Component />;
+        case 'error':
+            return <ErrorMessage />;
+        default:
+            throw new Error('Unexpected process state');
+    }
+}
+
 const ComicsList = () => {
 
     const [comicsList, setComicsList] = useState([]);
@@ -15,7 +31,7 @@ const ComicsList = () => {
     const [offset, setOffset] = useState(0);
     const [charEnded, setCharEnded] = useState(false);
 
-    const {loading, error, getAllComics} = useMarvelService();
+    const {getAllComics, currentProcess, setCurrentProcess} = useMarvelService();
 
     useEffect(() => {
         onRequest(offset, true);
@@ -25,7 +41,9 @@ const ComicsList = () => {
         initial
             ? setNewItemsLoading(false)
             : setNewItemsLoading(true);
-        getAllComics(offset).then(onComicsListLoaded)
+            getAllComics(offset)
+                .then(onComicsListLoaded)
+                .then(() => setCurrentProcess('confirmed'))
     }
 
     const onComicsListLoaded = (newComics) => {
@@ -70,20 +88,10 @@ const ComicsList = () => {
         return items;
     }
 
-    const items = renderItems(comicsList);
-
-    const errorMessage = error
-        ? <ErrorMessage/>
-        : null;
-    const spinner = loading && !newItemsLoading
-        ? <Spinner/>
-        : null;
     return (
         <div className="comics">
             < div className = "comics__cards" > <ul>
-            {errorMessage}
-            {spinner}
-            {items}
+            {setContent(currentProcess, () => renderItems(comicsList), newItemsLoading)}
         </ul>
         <button
             className="button button__main large"

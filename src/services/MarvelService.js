@@ -7,7 +7,7 @@ const useMarvelService = () => {
 
     const _baseOffset = 210;
     const _offset = 0;
-    const {loading, request, error, clearError} = useHttp();
+    const {request, clearError, currentProcess, setCurrentProcess} = useHttp();
 
     const getAllCharacters = async (offset = _baseOffset) => {
         const res = await request(`${_apiBase}characters?limit=9&offset=${offset}&${_apiKey}`)
@@ -51,14 +51,22 @@ const useMarvelService = () => {
             id: comic.id,
             title: comic.title, 
             thumbnail:`${comic.thumbnail.path}.${comic.thumbnail.extension}`,
-            description: comic.description || 'There`s no description for the comics' ,
-            pageCount: comic.pageCount ? `${ comic.pageCount } p.` : 'There`s no information about the number of pages',
+            description: comic.description || 'There`s no description for the comics.' ,
+            pageCount: comic.pageCount ? `${ comic.pageCount } p.` : 'There`s no information about the number of pages.',
             language: comic.textObjects.language || 'en-US',
             price: comic.prices[0].price
         }
     }
 
-    return {loading, error, clearError, getCharacter, getComic, getAllCharacters, getAllComics, getCharacterByName};
+    return {
+        clearError, 
+        currentProcess, 
+        setCurrentProcess,
+        getCharacter, 
+        getComic, 
+        getAllCharacters, 
+        getAllComics, 
+        getCharacterByName};
 }
 
 export default useMarvelService;
